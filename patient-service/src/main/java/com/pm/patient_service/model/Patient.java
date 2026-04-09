@@ -51,4 +51,90 @@ public class Patient {
     this.updated = updated;
   }
 
+  public UUID getId() {
+    return id;
+  }
+
+  public void setId(UUID id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public LocalDate getDateOfBirth() {
+    return dateOfBirth;
+  }
+
+  public void setDateOfBirth(LocalDate dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+  }
+
+  public Instant getCreated() {
+    return created;
+  }
+
+  public void setCreated(Instant created) {
+    this.created = created;
+  }
+
+  public Instant getUpdated() {
+    return updated;
+  }
+
+  public void setUpdated(Instant updated) {
+    this.updated = updated;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Patient other = (Patient) obj;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    return "Patient [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + ", dateOfBirth="
+        + dateOfBirth + ", created=" + created + ", updated=" + updated + "]";
+  }
 }
