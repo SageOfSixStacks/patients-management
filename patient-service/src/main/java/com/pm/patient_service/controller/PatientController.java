@@ -7,9 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pm.patient_service.dtos.CreatePatientRequestDto;
 import com.pm.patient_service.dtos.PatientResponseDto;
 import com.pm.patient_service.service.PatientService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/v1/patients")
@@ -23,5 +29,11 @@ public class PatientController {
   @GetMapping
   public ResponseEntity<List<PatientResponseDto>> getPatients() {
     return new ResponseEntity<>(patientService.getPatients(), HttpStatus.OK);
+  }
+
+  @PostMapping
+  public ResponseEntity<PatientResponseDto> createPatient(
+      @Valid @RequestBody CreatePatientRequestDto patientRequestDto) {
+    return new ResponseEntity<>(patientService.createPatient(patientRequestDto), HttpStatus.OK);
   }
 }
