@@ -31,24 +31,19 @@ public class Patient {
   @Column(name = "date_of_birth", nullable = false)
   private LocalDate dateOfBirth;
 
-  @Column(name = "created", nullable = false, updatable = false)
-  private Instant created;
-
-  @Column(name = "updated", nullable = false)
-  private Instant updated;
+  @Column(name = "registered_date", nullable = false, updatable = false)
+  private Instant registeredDate;
 
   public Patient() {
   }
 
-  public Patient(UUID id, String name, String email, String address, LocalDate dateOfBirth, Instant created,
-      Instant updated) {
+  public Patient(UUID id, String name, String email, String address, LocalDate dateOfBirth, Instant registeredDate) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.address = address;
     this.dateOfBirth = dateOfBirth;
-    this.created = created;
-    this.updated = updated;
+    this.registeredDate = registeredDate;
   }
 
   public UUID getId() {
@@ -91,20 +86,12 @@ public class Patient {
     this.dateOfBirth = dateOfBirth;
   }
 
-  public Instant getCreated() {
-    return created;
+  public Instant getRegisteredDate() {
+    return registeredDate;
   }
 
-  public void setCreated(Instant created) {
-    this.created = created;
-  }
-
-  public Instant getUpdated() {
-    return updated;
-  }
-
-  public void setUpdated(Instant updated) {
-    this.updated = updated;
+  public void setRegisteredDate(Instant registeredDate) {
+    this.registeredDate = registeredDate;
   }
 
   @Override
@@ -135,6 +122,6 @@ public class Patient {
   @Override
   public String toString() {
     return "Patient [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + ", dateOfBirth="
-        + dateOfBirth + ", created=" + created + ", updated=" + updated + "]";
+        + dateOfBirth + ", registeredDate=" + registeredDate + "]";
   }
 }
