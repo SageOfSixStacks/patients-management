@@ -16,7 +16,6 @@ public class PatientMapperImpl implements PatientMapper {
         patient.getName(),
         patient.getEmail(),
         patient.getAddress(),
-        patient.getDateOfBirth(),
-        patient.getRegisteredDate());
+        patient.getDateOfBirth());
   }
 }
