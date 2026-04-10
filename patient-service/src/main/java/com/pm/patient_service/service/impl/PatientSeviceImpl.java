@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.pm.patient_service.dtos.CreatePatientRequestDto;
 import com.pm.patient_service.dtos.PatientResponseDto;
+import com.pm.patient_service.exceptions.EmailAlreadyExitsException;
 import com.pm.patient_service.mapper.PatientMapper;
 import com.pm.patient_service.model.Patient;
 import com.pm.patient_service.repository.PatientRepository;
@@ -33,8 +34,15 @@ public class PatientSeviceImpl implements PatientService {
     return patientResponseDtos;
   }
 
+  // Method to handle patient creation
   @Override
   public PatientResponseDto createPatient(CreatePatientRequestDto createPatientRequestDto) {
+
+    if (patientRepository.existsByEmail(createPatientRequestDto.email())) {
+      throw new EmailAlreadyExitsException(
+          String.format("A patient with this email %s already exists", createPatientRequestDto.email()));
+    }
+
     Instant now = Instant.now();
 
     Patient patient = new Patient(
