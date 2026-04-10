@@ -11,6 +11,8 @@ import com.pm.patient_service.dtos.PatientRequestDto;
 import com.pm.patient_service.dtos.PatientResponseDto;
 import com.pm.patient_service.service.PatientService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/v1/patients")
+@Tag(name = "Patient", description = "An API for managing Patients")
 public class PatientController {
   private final PatientService patientService;
 
@@ -30,6 +33,7 @@ public class PatientController {
   }
 
   @GetMapping
+  @Operation(summary = "Get Patients")
   public ResponseEntity<List<PatientResponseDto>> getPatients() {
     return ResponseEntity
         .ok()
@@ -37,6 +41,7 @@ public class PatientController {
   }
 
   @PostMapping
+  @Operation(summary = "Create a new Patient")
   public ResponseEntity<PatientResponseDto> createPatient(
       @Valid @RequestBody PatientRequestDto patientRequestDto) {
     return ResponseEntity
@@ -45,6 +50,7 @@ public class PatientController {
   }
 
   @PutMapping("/{patientId}")
+  @Operation(summary = "Update a Patient")
   public ResponseEntity<PatientResponseDto> updatePatient(@PathVariable UUID patientId,
       @Valid @RequestBody PatientRequestDto patientRequestDto) {
     return ResponseEntity
@@ -53,6 +59,7 @@ public class PatientController {
   }
 
   @DeleteMapping("/{patientId}")
+  @Operation(summary = "Delete a Patient")
   public ResponseEntity<Void> deletePatient(@PathVariable UUID patientId) {
     patientService.deletePatient(patientId);
     return ResponseEntity
