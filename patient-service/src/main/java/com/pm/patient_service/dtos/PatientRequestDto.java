@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 
-public record CreatePatientRequestDto(
+public record PatientRequestDto(
     @NotBlank(message = ERROR_MESSAGE_NAME_LENGTH) @Size(max = 100, message = ERROR_MESSAGE_NAME_LENGTH) String name,
     @NotBlank(message = ERROR_MESSAGE_EMAIL_LENGTH) @Email(message = ERROR_MESSAGE_EMAIL_VALID) String email,
     @NotBlank(message = ERROR_MESSAGE_ADDRESS_LENGTH) String address,
