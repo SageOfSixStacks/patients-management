@@ -2,7 +2,6 @@ package com.pm.patient_service.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,12 +27,16 @@ public class PatientController {
 
   @GetMapping
   public ResponseEntity<List<PatientResponseDto>> getPatients() {
-    return new ResponseEntity<>(patientService.getPatients(), HttpStatus.OK);
+    return ResponseEntity
+        .ok()
+        .body(patientService.getPatients());
   }
 
   @PostMapping
   public ResponseEntity<PatientResponseDto> createPatient(
       @Valid @RequestBody CreatePatientRequestDto patientRequestDto) {
-    return new ResponseEntity<>(patientService.createPatient(patientRequestDto), HttpStatus.CREATED);
+    return ResponseEntity
+        .created(null)
+        .body(patientService.createPatient(patientRequestDto));
   }
 }
